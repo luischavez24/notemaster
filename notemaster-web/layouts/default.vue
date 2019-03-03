@@ -101,8 +101,8 @@ export default {
         },
         {
           icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'Notas',
+          to: '/notes'
         }
       ],
       miniVariant: false,
