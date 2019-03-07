@@ -19,8 +19,6 @@ public class Note {
 
     private LocalDateTime modifiedAt;
 
-    private String user;
-
     private String color;
 
     public String getId() {
@@ -63,14 +61,6 @@ public class Note {
         this.modifiedAt = modifiedAt;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getColor() {
         return color;
     }
@@ -84,7 +74,6 @@ public class Note {
         return "Note{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", user='" + user + '\'' +
                 '}';
     }
 }

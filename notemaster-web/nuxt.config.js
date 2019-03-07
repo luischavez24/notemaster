@@ -20,8 +20,11 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+        href:'https://fonts.googleapis.com/css?family=Nunito|Material+Icons',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.7.2/css/all.css'
       }
     ]
   },
@@ -35,7 +38,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/style/app.styl'
+    '~/assets/style/app.styl',
+    '~/assets/style/main.styl'
   ],
 
   /*

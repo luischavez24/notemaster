@@ -23,22 +23,6 @@ public class NotesController {
     @Autowired
     private UsersService usersService;
 
-    @GetMapping("/{username}")
-    public ResponseEntity findAllByUsername(@PathVariable String username,
-                                            @RequestParam int page,
-                                            @RequestParam int size) {
-
-        // Verify if user exists
-        if(usersService.existsByUsername(username)) {
-            // Get requested page
-            Page<Note> notePage = notesService.findAllByUser(username, page, size);
-            // Wrap page
-            return ResponseEntity.ok(PageWrapper.wrap(notePage));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
     @PostMapping("")
     public ResponseEntity addNewNote(@RequestBody  Optional<Note> note) {
         if(note.isPresent()) {

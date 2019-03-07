@@ -16,15 +16,6 @@ public class NotesServiceImpl implements NotesService {
     private NotesRepository notesRepository;
 
     @Override
-    public Page<Note> findAllByUser(String user, int page, int size) {
-
-        // Creating pageRequest
-        PageRequest pageRequest = PageRequest.of(page - 1, size);
-
-        return notesRepository.findAllByUser(pageRequest, user);
-    }
-
-    @Override
     public Note saveNote(Note noteToSave) {
         return notesRepository.save(noteToSave);
     }
