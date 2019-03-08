@@ -58,10 +58,14 @@
       <v-toolbar-side-icon @click="drawer = !drawer" />
       <v-toolbar-title class="ml-1">
         <div class="d-flex align-center">
-          <v-icon class="mr-2">{{ icon }}</v-icon>
-          <h4>{{ title }}</h4>
+          <v-icon class="mr-2">{{ appIcon }}</v-icon>
+          <h4>{{ appTitle }}</h4>
         </div>
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon @click.prevent="logout">
+        <v-icon>fa-sign-out-alt</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -74,8 +78,9 @@
 <script>
 import { mapState } from 'vuex'
 import items from '@/util/menu-items';
-
+import strings from '@/util/strings.js'
 export default {
+
   data() {
     return {
       clipped: true,
@@ -84,8 +89,7 @@ export default {
       items,
       miniVariant: false,
       right: true,
-      title: 'Notemaster',
-      icon: 'fa-sticky-note'
+      ...strings
     }
   },
   computed: {
@@ -95,6 +99,12 @@ export default {
     fullName(){
       const { firstName, middleName, lastName } = this.user;
       return `${firstName} ${middleName} ${lastName}`
+    }
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout();
+      this.$router.push('/login')
     }
   }
 }

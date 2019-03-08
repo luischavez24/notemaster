@@ -8,12 +8,13 @@ import com.notemaster.api.util.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/notes")
 public class NotesController {
 
@@ -22,6 +23,9 @@ public class NotesController {
 
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    private PasswordEncoder bcryptPasswordEncoder;
 
     @PostMapping("")
     public ResponseEntity addNewNote(@RequestBody  Optional<Note> note) {
@@ -34,5 +38,10 @@ public class NotesController {
             );
             return ResponseEntity.badRequest().body(body);
         }
+    }
+
+    @GetMapping("/generate-pass")
+    public String getPassword(@RequestParam String password) {
+        return bcryptPasswordEncoder.encode(password);
     }
 }

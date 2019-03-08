@@ -10,7 +10,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: pkg.title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -56,6 +56,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration
@@ -83,5 +84,37 @@ module.exports = {
     extend(config, ctx) {
       
     }
+  },
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { 
+            url: 'http://localhost:8080/oauth/token', 
+            method: 'post', 
+            propertyName: 'access_token',
+            auth: {
+              username: 'notemaster',
+              password: 'notemaster'
+            },
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          },
+          logout: false,
+          user: { url: 'http://localhost:8080/user/info', method: 'get', propertyName: "user" }
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer',
+      }
+    }
+  },
+  router: {
+    middleware: ['auth']
   }
 }

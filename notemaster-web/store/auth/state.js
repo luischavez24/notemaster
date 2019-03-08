@@ -1,3 +1,0 @@
-export default () => ({
-  user: {"_id":"5c7ac7ad23886b44c3823e71","username":"luis.chavez24","firstName":"Luis","middleName":"Ricardo","lastName":"Chávez Aliaga","photoURL":"https://scontent.flim17-1.fna.fbcdn.net/v/t1.0-9/50882487_2239741642736556_7710609964506546176_n.jpg?_nc_cat=110&_nc_eui2=AeE9XWW04sygwPxXZqWZoCFI9p6BUwACY5zqPgj-qaf9h0Umq9MyjBgaOsSos_92NxmDh-UnXUrDmtlfHFgXmAOyS4y9Z_go1eRiTtZ90nsVCQ&_nc_ht=scontent.flim17-1.fna&oh=b3ee9e59b92e66b059e94ff0a1e32c71&oe=5D2111EF"}
-})

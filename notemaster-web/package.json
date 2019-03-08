@@ -1,6 +1,7 @@
 {
   "name": "notemaster-web",
   "version": "1.0.0",
+  "title": "Notemaster",
   "description": "Notemaster Web Client",
   "author": "guis",
   "private": true,
@@ -11,12 +12,13 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/pwa": "^2.6.0",
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
+    "query-string": "^6.3.0",
     "vuetify": "^1.5.0",
-    "vuetify-loader": "^1.2.0",
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^2.6.0"
+    "vuetify-loader": "^1.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
