@@ -42,7 +42,7 @@
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>
-              Contraer
+              {{ miniVariantText }}
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
@@ -76,17 +76,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import items from '@/util/menu-items';
+import { mapState, mapGetters } from 'vuex'
+import { buildItems } from '@/util/menu-items';
 import strings from '@/util/strings.js'
-export default {
 
+export default {
   data() {
     return {
       clipped: true,
       drawer: false,
       fixed: false,
-      items,
       miniVariant: false,
       right: true,
       ...strings
@@ -99,6 +98,9 @@ export default {
     fullName(){
       const { firstName, middleName, lastName } = this.user;
       return `${firstName} ${middleName} ${lastName}`
+    },
+    items(){
+      return buildItems();
     }
   },
   methods: {

@@ -3,6 +3,7 @@ package com.notemaster.api.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Document(collection = "boards")
@@ -16,6 +17,8 @@ public class Boards {
     private String owner;
 
     private List<Note> notes;
+
+    private LocalDateTime savedAt;
 
     public String getId() {
         return id;
@@ -47,5 +50,13 @@ public class Boards {
 
     public void setNotes(List<Note> notes) {
         this.notes = notes;
+    }
+
+    public LocalDateTime getSavedAt() {
+        return savedAt;
+    }
+
+    public void setSavedAt(LocalDateTime savedAt) {
+        this.savedAt = savedAt;
     }
 }

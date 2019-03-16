@@ -21,6 +21,8 @@ public class Note {
 
     private String color;
 
+    private boolean isDark;
+
     public String getId() {
         return id;
     }
@@ -67,6 +69,14 @@ public class Note {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public boolean isDark() {
+        return isDark;
+    }
+
+    public void setDark(boolean dark) {
+        isDark = dark;
     }
 
     @Override

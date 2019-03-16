@@ -1,5 +1,4 @@
 <template>
-
   <v-layout fill-height wrap row justify-center align-content-center >
     <v-flex sm7 md5 lg4>
       <notification class="mb-3" v-if="error" :message="$data[error]"/>
@@ -41,6 +40,7 @@
 
 <script>
 import { mapState } from 'vuex'
+
 import QueryString from 'query-string'
 import strings from '@/util/strings.js'
 
@@ -74,10 +74,9 @@ export default {
       });
 
       try {
-        await this.$auth.loginWith('local', { data })
+        await this.$auth.loginWith('local', { data });
         this.$router.push('/');
       } catch(error) {
-        console.error({ error })
         this.error = error.response.data.error;
       }
        

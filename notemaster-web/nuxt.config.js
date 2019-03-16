@@ -46,7 +46,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    '@/plugins/axios',
+    '@/plugins/moment'
   ],
 
   /*
@@ -56,14 +58,15 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    ['@nuxtjs/moment', { locales: ['es'], defaultLocale: 'es' }]
   ],
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseURL: 'http://localhost:8080'
+    baseURL: 'http://192.168.1.15:8080'
   },
 
   /*
@@ -95,7 +98,7 @@ module.exports = {
       local: {
         endpoints: {
           login: { 
-            url: 'http://localhost:8080/oauth/token', 
+            url: '/oauth/token', 
             method: 'post', 
             propertyName: 'access_token',
             auth: {
@@ -107,7 +110,7 @@ module.exports = {
             }
           },
           logout: false,
-          user: { url: 'http://localhost:8080/user/info', method: 'get', propertyName: "user" }
+          user: { url: '/user/info', method: 'get', propertyName: "user" }
         },
         tokenRequired: true,
         tokenType: 'Bearer',
