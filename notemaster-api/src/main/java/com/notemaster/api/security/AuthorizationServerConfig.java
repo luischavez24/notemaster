@@ -55,8 +55,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
         configurer
                 .inMemory()
-                .withClient(clientId)
-                .secret(clientSecret)
+                .withClient(System.getenv(clientId))
+                .secret(System.getenv(clientSecret))
                 .authorizedGrantTypes(grantType, grantType)
                 .scopes(scopeRead, scopeWrite)
                 .resourceIds(resourceIds);
