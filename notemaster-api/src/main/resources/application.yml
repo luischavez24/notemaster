@@ -1,22 +1,13 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://luis:developer@notemaster-develop-s1ccj.mongodb.net/test?retryWrites=true
-      database: notemaster
-      # port: 27017
-      # host: localhost
+      uri: ${NOTEMASTER_DATABASE_URI}
+      database: ${NOTEMASTER_DATABASE}
 security:
-  # signing-key: MaYzkSjmkzPC57L
-  signing-key: NOTEMASTER_SIGNING_KEY
-  security-realm: Notemaster security realm
   oauth2:
     resource:
       filter-order: 3
   jwt:
-    # client-id: notemaster
-    # client-secret: $2a$12$RaGGYSbJAII7f9ECwfNK6ukuQHKXeysj8h4Q85..HrnRy28IGZTK2
-    client-id: NOTEMASTER_CLIENT_ID
-    client-secret: NOTEMASTER_CLIENT_SECRET
     grant-type: password
     scope-read: read
     scope-write: write

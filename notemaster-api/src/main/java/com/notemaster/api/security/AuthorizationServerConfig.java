@@ -1,5 +1,6 @@
 package com.notemaster.api.security;
 
+import com.notemaster.api.util.EnvVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,15 +22,6 @@ import java.util.Arrays;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Value("${security.jwt.client-id}")
-    private String clientId;
-
-    @Value("${security.jwt.client-secret}")
-    private String clientSecret;
-
     @Value("${security.jwt.grant-type}")
     private String grantType;
 
@@ -38,9 +30,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Value("${security.jwt.scope-write}")
     private String scopeWrite = "write";
-
-    @Value("${security.jwt.resource-ids}")
-    private String resourceIds;
 
     @Autowired
     private JwtAccessTokenConverter accessTokenConverter;
@@ -55,11 +44,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
         configurer
                 .inMemory()
-                .withClient(System.getenv(clientId))
-                .secret(System.getenv(clientSecret))
+                .withClient(System.getenv(EnvVariables.NOTEMASTER_CLIENT_ID.name()))
+                .secret(System.getenv(EnvVariables.NOTEMASTER_CLIENT_SECRET.name()))
                 .authorizedGrantTypes(grantType, grantType)
                 .scopes(scopeRead, scopeWrite)
-                .resourceIds(resourceIds);
+                .resourceIds(EnvVariables.NOTEMASTER_RESOURCE_ID.name());
     }
 
     @Override

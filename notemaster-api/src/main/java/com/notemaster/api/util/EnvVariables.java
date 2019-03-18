@@ -1,0 +1,9 @@
+package com.notemaster.api.util;
+
+public enum EnvVariables {
+    NOTEMASTER_SIGNING_KEY,
+    NOTEMASTER_CLIENT_ID,
+    NOTEMASTER_CLIENT_SECRET,
+    NOTEMASTER_RESOURCE_ID,
+    NOTEMASTER_SECURITY_REALM
+}

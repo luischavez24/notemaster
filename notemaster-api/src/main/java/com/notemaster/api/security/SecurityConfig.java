@@ -1,5 +1,6 @@
 package com.notemaster.api.security;
 
+import com.notemaster.api.util.EnvVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,12 +34,6 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${security.signing-key}")
-    private String signingKey;
-
-    @Value("${security.security-realm}")
-    private String securityRealm;
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -64,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .httpBasic()
-                .realmName(securityRealm)
+                .realmName(System.getenv(EnvVariables.NOTEMASTER_SECURITY_REALM.name()))
                 .and()
                 .cors()
                 .and()
@@ -74,9 +69,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
+        String signingKey = System.getenv(EnvVariables.NOTEMASTER_SIGNING_KEY.name());
+
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(System.getenv(signingKey));
-        converter.setVerifierKey(System.getenv(signingKey));
+        converter.setSigningKey(signingKey);
+        converter.setVerifierKey(signingKey);
+
         return converter;
     }
 
